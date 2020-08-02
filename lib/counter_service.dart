@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 import 'counter.dart';
+import 'notification_service.dart';
+
 
 class CounterService {
   factory CounterService() => _instance;
@@ -14,8 +16,12 @@ class CounterService {
   ValueListenable<int> get count => _counter.count;
 
   void startCounting() {
-    Stream.periodic(Duration(seconds: 1)).listen((_) {
+    Stream.periodic(Duration(seconds: 20)).listen((_) {
       _counter.increment();
+
+      Notification().initializing();
+      Notification().showNotification();
+
       print('Counter incremented: ${_counter.count.value}');
     });
   }
