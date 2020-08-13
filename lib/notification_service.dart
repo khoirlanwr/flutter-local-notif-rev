@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/cupertino.dart';
 
-class Notification {
+class LocalNotificationPlugin {
 
-  factory Notification() => _instance;
+  factory LocalNotificationPlugin() => _instance;
   
-  Notification._internal();
+  LocalNotificationPlugin._internal();
   
-  static final _instance = Notification._internal();
+  static final _instance = LocalNotificationPlugin._internal();
 
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -50,7 +50,7 @@ class Notification {
     }
   }
 
-  void showNotification() async {
+  void showNotification(String deskripsi) async {
     var android = new AndroidNotificationDetails(
         'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
         priority: Priority.High,importance: Importance.Max
@@ -58,8 +58,8 @@ class Notification {
     var iOS = new IOSNotificationDetails();
     var platform = new NotificationDetails(android, iOS);
     await flutterLocalNotificationsPlugin.show(
-        0, 'New Video is out', 'Flutter Local Notification', platform,
-        payload: 'Nitish Kumar Singh is part time Youtuber');
+        0, 'Notifikasi Pengembalian Buku', deskripsi, platform,
+        payload: 'Pemberitahuan pengembalian buku');
   }
 
 

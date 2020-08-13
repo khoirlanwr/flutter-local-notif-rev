@@ -5,6 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_background/app_retain_widget.dart';
 import 'package:flutter_background/background_main.dart';
 import 'package:flutter_background/counter_service.dart';
+import 'package:flutter_background/screens/halaman_root.dart';
+import 'package:flutter_background/models/model_user_function.dart';
+
+import 'package:flutter_background/screens/halaman_login.dart';
+import 'package:flutter_background/screens/halaman_beranda.dart';
+import 'package:flutter_background/screens/halaman_tambah_edit.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -20,10 +27,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Background Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Library PPNS',
       home: AppRetainWidget(
-        child: MyHomePage(),
+        child: HalamanRoot(user: new User()),
       ),
+      routes: {
+        HalamanRoot.id: (context) => HalamanRoot(),
+        HalamanLogin.id: (context) => HalamanLogin(),
+        HalamanBeranda.id: (context) => HalamanBeranda(),
+        HalamanTambahEdit.id: (context) => HalamanTambahEdit()
+      },
+
     );
   }
 }
@@ -40,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Background Demo'),
+        title: Text('Library PPNS'),
       ),
       body: Center(
         child: ValueListenableBuilder(
